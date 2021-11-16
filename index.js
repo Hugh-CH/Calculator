@@ -1,29 +1,36 @@
 const readline = require('readline-sync');
 
-var ans;
+var ans     = 0;
+var numbers = [];
 
 console.log('Welcome to the calculator');
+console.log('=========================');
 
 console.log('Enter operator:');
 const operator = readline.prompt();
 
-console.log('Enter first number:');
-const first_num = readline.prompt();
+console.log('How many numbers do you want to %s?:',operator);
+const repeats = readline.prompt();
 
-console.log('Enter second number:');
-const second_num = readline.prompt();
+for (let i=0;i<repeats;i++){
+    console.log('Enter number %s',i+1);
+    numbers[i] = readline.prompt();
+ }
 
-if (operator == '*'){
-    ans = first_num*second_num;
-}   else if (operator == '/'){
-    ans = first_num/second_num;
-}   else if (operator == '+'){
-    ans = parseFloat(first_num)+parseFloat(second_num);
-}   else if (operator == '-'){
-    ans = first_num-second_num;
-}   else{
-    console.error('Incompatible operator')
-}
+ans = numbers[0]
 
-console.log('%s %s %s = %s',first_num,operator,second_num,ans)
+ for (let i=1;i<repeats;i++){
+    if (operator == '*'){
+        ans = ans*numbers[i];
+    }   else if (operator == '/'){
+        ans = ans/numbers[i];
+    }   else if (operator == '+'){
+        ans = parseFloat(ans)+parseFloat(numbers[i]);
+    }   else if (operator == '-'){
+        ans = ans-numbers[i];
+    }   else{
+        ans = ('ERROR:Incompatible operator')
+    }
+ }
 
+ console.log('The answer is:  %s',ans)
